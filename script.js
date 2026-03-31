@@ -2,16 +2,26 @@ const laptop = document.getElementById("laptop");
 
 const sounds = [
   document.getElementById("moan1"),
-  document.getElementById("moan2")
+  document.getElementById("moan2"),
+  document.getElementById("moan3")
 ];
 
+// 🔊 Play random sound
 function playMoan() {
   let random = Math.floor(Math.random() * sounds.length);
-  sounds[random].currentTime = 0;
-  sounds[random].play();
+  let sound = sounds[random];
+
+  sound.currentTime = 0;
+  sound.play();
+
+  // 💥 shake effect
+  laptop.classList.add("shake");
+  setTimeout(() => {
+    laptop.classList.remove("shake");
+  }, 300);
 }
 
-// 🔓 SOUND UNLOCK (ALAG rakhna hai)
+// 🔓 SOUND UNLOCK (IMPORTANT)
 document.body.addEventListener("click", () => {
   sounds.forEach(sound => {
     sound.play().then(() => {
@@ -21,10 +31,10 @@ document.body.addEventListener("click", () => {
   });
 }, { once: true });
 
-// Click = hit
+// 👆 Click = hit
 laptop.addEventListener("click", playMoan);
 
-// Keyboard = hit
+// ⌨️ Keyboard = hit
 document.addEventListener("keydown", playMoan);
 
 // 📳 Mobile shake detection
