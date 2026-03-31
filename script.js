@@ -11,13 +11,23 @@ function playMoan() {
   sounds[random].play();
 }
 
+// 🔓 SOUND UNLOCK (ALAG rakhna hai)
+document.body.addEventListener("click", () => {
+  sounds.forEach(sound => {
+    sound.play().then(() => {
+      sound.pause();
+      sound.currentTime = 0;
+    });
+  });
+}, { once: true });
+
 // Click = hit
 laptop.addEventListener("click", playMoan);
 
 // Keyboard = hit
 document.addEventListener("keydown", playMoan);
 
-// Mobile shake detection
+// 📳 Mobile shake detection
 let lastX = null;
 
 window.addEventListener("devicemotion", (event) => {
